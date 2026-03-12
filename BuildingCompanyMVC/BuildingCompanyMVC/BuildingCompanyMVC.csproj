@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Entities\" />
-    <Folder Include="Domain\Enums\" />
-    <Folder Include="Domain\Repositories\Abstract\" />
-    <Folder Include="Domain\Repositories\Entity Framework\" />
     <Folder Include="Models\ViewComponents\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\" />
