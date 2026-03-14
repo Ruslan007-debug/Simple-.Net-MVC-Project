@@ -44,7 +44,7 @@ namespace BuildingCompanyMVC
             {
                 options.Cookie.HttpOnly = true;
                 options.Cookie.Name = "BuildingCompanyAuth";
-                options.LoginPath = "/admin/login";
+                options.LoginPath = "/account/login";
                 options.AccessDeniedPath = "/admin/accessdenied";
                 options.SlidingExpiration = true;
             });

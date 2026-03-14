@@ -1,0 +1,65 @@
+﻿@{
+	string strTitle = "AdminPanel";
+	ViewBag.Title = strTitle;
+	IEnumerable<ServiceCategory>? serviceCategories = ViewBag.ServiceCategories;
+	IEnumerable<Service>? services = ViewBag.Services;
+}
+
+<div>
+	<h2>
+		@strTitle
+	</h2>
+	<div>
+		<h3>Категорії послуг</h3>
+		<a asp-area="" asp-controller="Admin" asp-action="ServiceCategoriesEdit" asp-all-route-id="">Створити категорію послуг</a>
+	</div>
+	@if (serviceCategories.Any())
+	{
+		<div>
+			@foreach (ServiceCategory category in serviceCategories)
+			{
+				<div>
+					<a asp-area="" asp-controller="Admin" asp-action="ServiceCategoriesEdit" asp-route-id="@category.Id">Редагувати категорію послуг</a>
+					<form style="display: inline-block"; id="form-category-@category.Id" asp-area=""
+					asp-controller="Admin" asp-action="ServiceCategoryDelete" method="post">
+						<input type="hidden" name="id" value="@category.Id" />
+						<a href="#" onclick="document.getElementById('form-category-@category.Id').submit();">Видалити</a>
+					</form>
+					<span>@category.Title</span>
+				</div>
+			}
+		</div>
+	}
+
+	<div>
+		<h3>Послуги</h3>
+		<a asp-area="" asp-controller="Admin" asp-action="ServicesEdit" asp-route-id="">Створити послугу</a>
+		@if (services.Any())
+		{
+			<div>
+				@foreach (Service service in services)
+				{
+					<div>
+						<a asp-area="" asp-controller="Admin" asp-action="ServicesEdit" asp-route-id="@service.Id">Редагувати</a>
+						<form style="display: inline-block" ; id="form-service-@service.Id" asp-area=""
+							  asp-controller="Admin" asp-action="ServicesDelete" method="post">
+							<input type="hidden" name="id" value="@service.Id" />
+							<a href="#" onclick="document.getElementById('form-service-@service.Id').submit();">Видалити</a>
+						</form>
+						<span>
+							@($"{service.ServiceCategory?.Title}") |
+							<a asp-area="" asp-controller = "Services" asp-action="Show" asp-route-id="@service.Id">
+								@($"{service.Title}")
+							</a>
+						</span>
+					</div>
+				}
+			</div>
+		}
+	</div>
+	<div class="div-box">
+		<form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+			<input type="submit" value="Вихід" />
+		</form>
+	</div>
+</div>

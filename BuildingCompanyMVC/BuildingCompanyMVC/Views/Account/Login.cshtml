@@ -1,0 +1,35 @@
+﻿@model LoginViewModel
+@{
+	string strTitle = "Вхід в систему";
+	ViewBag.Title = strTitle;
+}
+
+<div>
+	<h1>
+		@strTitle
+	</h1>
+	<div class="div-box">
+	<form asp-area="" asp-controller="Account" asp-action="Login" method="post" asp-route-returnUrl="@ViewBag.ReturnUrl">
+		<div asp-validation-summary="All">
+		</div>
+		<div>
+			<label asp-for="UserName"></label>
+			<input asp-for="UserName" />
+				<span asp-validation-for="UserName"></span>
+		</div>
+		<div>
+			<label asp-for="Password"></label>
+			<input asp-for="Password" type="password" />
+			<span asp-validation-for="Password"></span>
+		</div>
+		<div>
+			<label asp-for="RememberMe"></label>
+			<input asp-for="RememberMe" type="checkbox"/>
+			<span asp-validation-for="RememberMe"></span>
+		</div>
+		<div>
+				<button type="submit" value="Увійти">Увійти</button>
+			</div>
+	</form>
+	</div>
+</div>
