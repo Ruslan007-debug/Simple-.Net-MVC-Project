@@ -19,11 +19,11 @@
 			@foreach (ServiceCategory category in serviceCategories)
 			{
 				<div>
-					<a asp-area="" asp-controller="Admin" asp-action="ServiceCategoriesEdit" asp-route-id="@category.Id">Редагувати категорію послуг</a>
+					<a asp-area="" asp-controller="Admin" asp-action="ServiceCategoriesEdit" asp-route-id="@category.Id">Редагувати |</a>
 					<form style="display: inline-block"; id="form-category-@category.Id" asp-area=""
-					asp-controller="Admin" asp-action="ServiceCategoryDelete" method="post">
+					asp-controller="Admin" asp-action="ServiceCategoriesDelete" method="post">
 						<input type="hidden" name="id" value="@category.Id" />
-						<a href="#" onclick="document.getElementById('form-category-@category.Id').submit();">Видалити</a>
+						<a href="#" onclick="document.getElementById('form-category-@category.Id').submit();">Видалити |</a>
 					</form>
 					<span>@category.Title</span>
 				</div>
@@ -40,11 +40,11 @@
 				@foreach (Service service in services)
 				{
 					<div>
-						<a asp-area="" asp-controller="Admin" asp-action="ServicesEdit" asp-route-id="@service.Id">Редагувати</a>
-						<form style="display: inline-block" ; id="form-service-@service.Id" asp-area=""
+						<a asp-area="" asp-controller="Admin" asp-action="ServicesEdit" asp-route-id="@service.Id">Редагувати |</a>
+						<form style="display: inline-block" id="form-service-@service.Id" asp-area=""
 							  asp-controller="Admin" asp-action="ServicesDelete" method="post">
 							<input type="hidden" name="id" value="@service.Id" />
-							<a href="#" onclick="document.getElementById('form-service-@service.Id').submit();">Видалити</a>
+							<a href="#" onclick="document.getElementById('form-service-@service.Id').submit();">Видалити |</a>
 						</form>
 						<span>
 							@($"{service.ServiceCategory?.Title}") |

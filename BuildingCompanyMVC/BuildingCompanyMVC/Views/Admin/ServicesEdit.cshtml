@@ -1,0 +1,94 @@
+﻿
+@model Service
+
+@{
+	string strTitle ="Редагувати послугу";
+	ViewBag.Title = strTitle;
+}
+<style>
+	button{
+		color: black !important;
+	}
+</style>
+
+<script src="https://cdn.tiny.cloud/1/9477qi19o8d4wpfl44q8zxceqv4hkgr4ug4web094yvipfzp/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+
+<div>
+	<h2>
+		@strTitle
+	</h2>
+	<div>
+		<form asp-area="" asp-controller="Admin" asp-action="ServicesEdit" method="post" enctype="multipart/form-data">
+			<input type="hidden" asp-for="Id" />
+			<input type="hidden" asp-for="DateCreated" />
+			<input type="hidden" asp-for="Photo" />
+
+			<div asp-validation-summary="All"></div>
+			<div class="div-box">
+				<select asp-for="ServiceCategoryId">
+					<option value="">-- Виберіть категорію послуг --</option>
+					@foreach (ServiceCategory category in ViewBag.ServiceCategories)
+					{
+						<option value="@category.Id">@category.Title</option>
+					}
+				</select>
+				<span asp-validation-for="ServiceCategoryId"></span>
+			</div>
+			<div class="div-box">
+				<label asp-for="Title"></label>
+				<input asp-for="Title" />
+				<span asp-validation-for="Title"></span>
+			</div>
+			<div class="div-box">
+				<label asp-for="Type"></label>
+				<select asp-for="Type" asp-items="Html.GetEnumSelectList<ServiceTypeEnum>()"></select>
+				<span asp-validation-for="Type"></span>
+			</div>
+			<div class="div-box">
+				<label asp-for="DescriptionShort"></label>
+				<input asp-for="DescriptionShort" />
+				<span asp-validation-for="DescriptionShort"></span>
+			</div>
+			<div class="div-box">
+				<label asp-for="Description"></label>
+				<textarea asp-for="Description"></textarea>
+				<span asp-validation-for="Description"></span>
+			</div>
+			<div class="div-box">
+				<label asp-for="Photo"></label>
+				<input type="file" name="titleImageFile" id="titleImageFile" />
+				<div>
+					<img class="img-block" src="~/img/@Model.Photo" />
+				</div>
+			</div>
+			<input type="submit" value="Зберегти" />
+		</form>
+	</div>
+</div>
+<script>
+	tinymce.init({
+	  selector: 'textarea',
+	  plugins: [
+		// Core editing features
+		'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+		// Your account includes a free trial of TinyMCE premium features
+		// Try the most popular premium features until Mar 24, 2026:
+		'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+	  ],
+	  toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+	  tinycomments_mode: 'embedded',
+	  tinycomments_author: 'Author name',
+	  mergetags_list: [
+		{ value: 'First.Name', title: 'First Name' },
+		{ value: 'Email', title: 'Email' },
+	  ],
+	  ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+	  uploadcare_public_key: '0d23fb4f41f9d1ddfdaa',
+	  automaticuploads:true,
+	  images_upload_url: '/admin/SaveEditorImg',
+	  images_reuse_filename: true,
+	  image_dimension:false,
+	  paste_data_images: true,
+	  convert_urls: false,
+	});
+</script>
