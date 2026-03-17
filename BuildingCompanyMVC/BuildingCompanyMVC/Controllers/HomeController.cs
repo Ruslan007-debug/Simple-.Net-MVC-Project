@@ -8,5 +8,10 @@ namespace BuildingCompanyMVC.Controllers
         {
             return View();
         }
+
+        public IActionResult Contacts()
+        {
+            return View();
+        }
     }
 }

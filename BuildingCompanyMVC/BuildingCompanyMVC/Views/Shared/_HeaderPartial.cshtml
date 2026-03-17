@@ -1,3 +1,4 @@
+
 @inject IConfiguration config;
 
 @{
@@ -13,7 +14,7 @@
                         @appConfig?.Company.CompanyName
                     </a>
                 </h1>
-                @*TODO: ViewComponent*@
+                @(await Component.InvokeAsync<MenuViewComponents>())
             </div>
         </header>
 
