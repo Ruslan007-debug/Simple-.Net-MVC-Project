@@ -22,6 +22,7 @@ namespace BuildingCompanyMVC.Controllers.Admin
             }
 
             await _dataManager.ServiceCategories.SaveServiceCategoryAsync(model);
+            _logger.LogInformation("Service category with id: {ServiceCategoryId} was edited", model.Id);
             return RedirectToAction("Index");
         }
 
@@ -29,6 +30,9 @@ namespace BuildingCompanyMVC.Controllers.Admin
         public async Task<IActionResult> ServiceCategoriesDelete(int id)
         {
             await _dataManager.ServiceCategories.DeleteServiceCategoryAsync(id);
+
+            _logger.LogInformation("Service category with id: {ServiceCategoryId} was deleted", id);
+
             return RedirectToAction("Index");
         }
     }

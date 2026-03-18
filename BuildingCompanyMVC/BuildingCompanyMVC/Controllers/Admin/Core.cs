@@ -11,11 +11,13 @@ namespace BuildingCompanyMVC.Controllers.Admin
     {
         private readonly DataManager _dataManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly ILogger<AdminController> _logger;
 
-        public AdminController(DataManager dataManager, IWebHostEnvironment webHostEnvironment)
+        public AdminController(DataManager dataManager, IWebHostEnvironment webHostEnvironment, ILogger<AdminController> logger)
         {
             _dataManager = dataManager;
             _webHostEnvironment = webHostEnvironment;
+            _logger = logger;
         }
 
         public async Task<IActionResult> Index()

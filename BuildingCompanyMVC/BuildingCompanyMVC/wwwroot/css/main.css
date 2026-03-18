@@ -1928,51 +1928,81 @@ ol.default li {
     margin-top: 0;
   }
   /* Box */
-  .box.excerpt .image-left {
-    margin-right: 0;
-  }
-  .box.excerpt header {
-    margin-left: 32%;
-  }
-  .box.excerpt p {
-    clear: both;
-  }
-  .box.feature1 section {
-    margin-bottom: 2em !important;
-  }
-  .box.spotlight {
-    margin-top: 2em;
-  }
-  /* Wrappers */
-  #header-wrapper {
-    background-position: 35% 50%;
-  }
-  #footer-wrapper {
-    padding: 3em 20px 3em 20px;
-  }
-  #footer-wrapper section, #footer-wrapper article {
-    margin-bottom: 3em !important;
-  }
-  .wrapper {
-    padding: 3em 20px 3em 20px;
-  }
-  /* Banner */
-  #banner {
-    padding: 40px 20px 40px 20px;
-  }
-  #banner h2 {
-    font-size: 18pt !important;
-  }
-  /* Sidebar */
-  #sidebar {
-    margin-top: 2em;
-  }
-  /* Footer */
-  #copyright {
-    margin-top: 0;
-    padding: 3em 0 1em 0;
-  }
+    .box.excerpt {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 30px;
+        align-items: flex-start;
+    }
+
+        .box.excerpt .image.left {
+            float: none;
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+            .box.excerpt .image.left img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+            }
+
+.box.excerpt header {
+  margin-left: 0; /* ❌ прибрали криву магію */
 }
+
+.box.excerpt p {
+  margin-top: 10px;
+}
+
+/* Інше залишаємо */
+.box.feature1 section {
+  margin-bottom: 2em !important;
+}
+
+.box.spotlight {
+  margin-top: 2em;
+}
+
+/* Wrappers */
+#header-wrapper {
+  background-position: 35% 50%;
+}
+
+#footer-wrapper {
+  padding: 3em 20px 3em 20px;
+}
+
+#footer-wrapper section,
+#footer-wrapper article {
+  margin-bottom: 3em !important;
+}
+
+.wrapper {
+  padding: 3em 20px;
+}
+
+/* Banner */
+#banner {
+  padding: 40px 20px;
+}
+
+#banner h2 {
+  font-size: 18pt !important;
+}
+
+/* Sidebar */
+#sidebar {
+  margin-top: 2em;
+}
+
+/* Footer */
+#copyright {
+  margin-top: 0;
+  padding: 3em 0 1em 0;
+}
+
+/* Custom */
 .div-box {
   padding: 30px 0;
 }

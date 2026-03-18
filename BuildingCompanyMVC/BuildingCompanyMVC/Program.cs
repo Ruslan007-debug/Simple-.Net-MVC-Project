@@ -5,6 +5,7 @@ using BuildingCompanyMVC.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Serilog;
 
 namespace BuildingCompanyMVC
 {
@@ -51,7 +52,16 @@ namespace BuildingCompanyMVC
 
             builder.Services.AddControllersWithViews();
 
+            builder.Host.UseSerilog((context, configuration)=> configuration.ReadFrom.Configuration(context.Configuration));
+
             WebApplication app = builder.Build(); 
+
+            app.UseSerilogRequestLogging();
+
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseStaticFiles();
 
